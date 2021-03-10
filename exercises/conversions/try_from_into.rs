@@ -11,8 +11,6 @@ struct Color {
     blue: u8,
 }
 
-// I AM NOT DONE
-
 // Your task is to complete this implementation
 // and return an Ok result of inner type Color.
 // You need to create an implementation for a tuple of three integers,
@@ -25,19 +23,87 @@ struct Color {
 // Tuple implementation
 impl TryFrom<(i16, i16, i16)> for Color {
     type Error = String;
-    fn try_from(tuple: (i16, i16, i16)) -> Result<Self, Self::Error> {}
+    fn try_from(tuple: (i16, i16, i16)) -> Result<Self, Self::Error> {
+        let val0 = tuple.0;
+        println!("{}", val0);
+        let val1 = tuple.1;
+        println!("{}", val1);
+
+        let val2 = tuple.2;
+        println!("{}", val2);
+
+        if val0 < 0 || val1 < 0 || val2 < 0 {
+            return Err(String::from("Negative value."));
+        }
+
+        if val0 >= u8::MAX as i16 || val1 >= u8::MAX as i16 || val2 >= u8::MAX as i16 {
+            return Err(String::from("Negative value."));
+        }
+
+        Ok(Color {
+            red: val0 as u8,
+            green: val1 as u8,
+            blue: val2 as u8,
+        })
+    }
 }
 
 // Array implementation
 impl TryFrom<[i16; 3]> for Color {
     type Error = String;
-    fn try_from(arr: [i16; 3]) -> Result<Self, Self::Error> {}
+    fn try_from(arr: [i16; 3]) -> Result<Self, Self::Error> {
+        let val0 = arr[0];
+        println!("{}", val0);
+        let val1 = arr[1];
+        println!("{}", val1);
+        let val2 = arr[2];
+        println!("{}", val2);
+
+        if val0 < 0 || val1 < 0 || val2 < 0 {
+            return Err(String::from("Negative value."));
+        }
+
+        if val0 >= u8::MAX as i16 || val1 >= u8::MAX as i16 || val2 >= u8::MAX as i16 {
+            return Err(String::from("Negative value."));
+        }
+
+        Ok(Color {
+            red: val0 as u8,
+            green: val1 as u8,
+            blue: val2 as u8,
+        })
+    }
 }
 
 // Slice implementation
 impl TryFrom<&[i16]> for Color {
     type Error = String;
-    fn try_from(slice: &[i16]) -> Result<Self, Self::Error> {}
+    fn try_from(slice: &[i16]) -> Result<Self, Self::Error> {
+        if slice.len() != 3 {
+            return Err(String::from("It should be 3 values."));
+        }
+
+        let val0 = slice[0];
+        println!("{}", val0);
+        let val1 = slice[1];
+        println!("{}", val1);
+        let val2 = slice[2];
+        println!("{}", val2);
+
+        if val0 < 0 || val1 < 0 || val2 < 0 {
+            return Err(String::from("Negative value."));
+        }
+
+        if val0 >= u8::MAX as i16 || val1 >= u8::MAX as i16 || val2 >= u8::MAX as i16 {
+            return Err(String::from("Negative value."));
+        }
+
+        Ok(Color {
+            red: val0 as u8,
+            green: val1 as u8,
+            blue: val2 as u8,
+        })
+    }
 }
 
 fn main() {
